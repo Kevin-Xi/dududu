@@ -1,0 +1,39 @@
+{
+    "port": 9922,
+    "serverName": "dududu",
+    "templates": {
+        "sListen": "Server listening on port ${port}.",
+        "cConnect": "New Client ${ip}:${port} comes in.",
+        "cClose": "Client ${ip}:${port} leaves.",
+        "sWelcome": "${serverName} > Welcome ${clientName}! Now you can dududu with others! Happy dududuing!\n",
+
+        "!online": "${serverName} > ${clientName} is online.\n",
+        "!offline": "${serverName} > ${clientName} is offline.\n",
+
+        "/rest": "**${name} sit down at table to have a rest.**\n",
+        "/nod": "**${name} nod head twice.**\n",
+        "/smile": "**${name} smiles.**\n",
+        "/blink": "**${name} blink eyes.**\n",
+        "/afk": "**${name} is AFK.**\n",
+        "/me": "**${name}${act}**\n",
+
+        ":farewell": "${serverName} > See you again, ${clientName}!\n",
+
+        "-common": "${name} > ${data}\n"
+    },
+    "actions": {
+        "/rest": "you are about to rest",
+        "/nod": "you nod",
+        "/smile": "you smile",
+        "/blink": "you blink your eyes",
+        "/afk": "you are afk",
+        "/me <do sth>": "you do sth"
+    },
+    "commands": {
+        ":help, :h": "[WIP]show the help",
+        ":nick": "[WIP]set your nick",
+        ":roster, :namelist, :nl, :meibo": "show a nickname list of online users",
+        ":to, :whisper <nickname> <msg>": "directly send <msg> to <nickname>, in private.",
+        ":quit, :exit, :bye": "disconnect your session, will broadcast the leaving msg."
+    }
+}
