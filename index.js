@@ -149,7 +149,7 @@ function commandResponse(id, data) {
             break;
         case ':to':
         case ':whisper':
-            whisper(id, input[1], input[2]);
+            whisper(id, inputs[1], inputs.slice(2).join(' '));
             break;
         case ':quit':
         case ':exit':
@@ -200,6 +200,37 @@ function removeFromPeers(id) {
 function showHelp(id) {
     let c = peers[id].c;
     c.write(helpContent);
+}
+
+function showRoster(id) {
+    let roster = [];
+    for (let id in peers) {
+        roster.push(`${id}: ${peers[id].name}`);
+    }
+
+    let rosterContent = `${config.serverName} > dududu-ers online:\n${roster.join('\n')}\nHave a nice chat with them!\n`;
+
+    let c = peers[id].c;
+    c.write(rosterContent);
+}
+
+function whisper(senderId, receiverId, msg) {
+    if (!receiverId || !msg) {
+        showHelp(senderId);
+        return;
+    }
+    let sender = peers[senderId];
+    let receiver = peers[receiverId];
+    if (!receiver) {
+        sender.c.write(utils.render(templates['!receiverNotExist'], { serverName: config.serverName, receiverId: receiverId  }));
+        return;
+    }
+
+    let whisperContent = utils.render(templates['!whisper'], { senderName: sender.name, receiverName: receiver.name, msg: msg });
+    sender.c.write(whisperContent);
+    if (senderId != receiverId) {
+        receiver.c.write(whisperContent);
+    }
 }
 
 function farewell(id) {

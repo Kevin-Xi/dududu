@@ -9,6 +9,8 @@
 
         "!online": "${serverName} > ${clientName} is online.\n",
         "!offline": "${serverName} > ${clientName} is offline.\n",
+        "!receiverNotExist": "${serverName} > ${receiverId} is not online.\n",
+        "!whisper": "${senderName} whisper to ${receiverName} > ${msg}\n",
 
         "/rest": "**${name} sit down at table to have a rest.**\n",
         "/nod": "**${name} nod head twice.**\n",
@@ -33,7 +35,7 @@
         ":help, :h": "[WIP]show the help",
         ":nick": "[WIP]set your nick",
         ":roster, :namelist, :nl, :meibo": "show a nickname list of online users",
-        ":to, :whisper <nickname> <msg>": "directly send <msg> to <nickname>, in private.",
+        ":to, :whisper <id> <msg>": "directly send <msg> to <id>, in private.",
         ":quit, :exit, :bye": "disconnect your session, will broadcast the leaving msg."
     }
 }
