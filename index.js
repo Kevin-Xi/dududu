@@ -82,7 +82,7 @@ function welcome(id) {
     let name = peer.name;
 
     broadcast('system', { id: id, template: '!online' });
-    c.write(utils.render(templates.sWelcome, {
+    c.write(utils.render(templates['!Welcome'], {
         serverName: config.serverName,
         clientName: name
     }));
