@@ -117,6 +117,10 @@ function actionResponse(id, data) {
             });
             break;
         case '/me':
+            if (!data.includes(' ')) {
+                showHelp(id);
+                return;
+            }
             broadcast('action', {
                 id: id,
                 template: action,
