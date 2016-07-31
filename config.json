@@ -29,7 +29,8 @@
         "/smile": "you smile",
         "/blink": "you blink your eyes",
         "/afk": "you are afk",
-        "/me <do sth>": "you do sth"
+        "/me <do sth>": "you do sth",
+        "/tap <id>": "[WIP] tap <id> on shoulder"
     },
     "commands": {
         ":help, :h": "[WIP]show the help",
