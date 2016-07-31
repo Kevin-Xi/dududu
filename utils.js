@@ -15,9 +15,9 @@ function randomString(n) {
 }
 
 function render(template, placeholders) {
-    var result = template;
-    for (var k in placeholders) {
-        var regex = new RegExp('\\${' + k + '}', 'g');
+    let result = template;
+    for (let k in placeholders) {
+        let regex = new RegExp('\\${' + k + '}', 'g');
         result = result.replace(regex, placeholders[k]);
     }
     return result;
