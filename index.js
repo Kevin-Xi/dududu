@@ -6,11 +6,13 @@ const utils = require('./utils');
 
 const config = require('./config');
 const templates = config.templates;
+const maxPeerCount = config.maxPeerCount;
 
 const server = net.createServer(onConnect);
 
 let peers = {};
 let peerCount = 0;
+let accumulateCount = 0;
 
 let helpContent = (function () {
     let actions = config.actions;
@@ -69,7 +71,9 @@ function onConnect(c) {
 }
 
 function initPeer(c) {
-    let id = peerCount++;
+    peerCount++;
+    let id = (accumulateCount++) % maxPeerCount;
+    // TODO check if id is been occupied
     peers[id] = { c: c, name: utils.randomString(6) };
     c.setEncoding('utf8');
 

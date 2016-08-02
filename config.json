@@ -1,6 +1,7 @@
 {
     "port": 9922,
     "serverName": "dududu",
+    "maxPeerCount": 1000,
     "templates": {
         "sListen": "Server listening on port ${port}.",
         "cConnect": "New Client ${ip}:${port} comes in.",
