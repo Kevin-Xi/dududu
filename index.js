@@ -100,7 +100,8 @@ function welcome(id) {
     broadcast('system', { id: id, template: '!online' });
     c.write(utils.render(templates['!Welcome'], {
         serverName: config.serverName,
-        clientName: name
+        clientName: name,
+        id: id
     }));
 }
 
