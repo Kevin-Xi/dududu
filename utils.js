@@ -23,7 +23,27 @@ function render(template, placeholders) {
     return result;
 }
 
+function query(collection, condition) {
+    let match = function (target, condition) {
+        for (let key in condition) {
+            if (target[key] != condition[key]) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    for (let i in collection) {
+        if (match(collection[i], condition)) {
+            return collection[i];
+        }
+    }
+
+    return null;
+}
+
 module.exports = {
     randomString: randomString,
-    render: render
+    render: render,
+    query: query
 };

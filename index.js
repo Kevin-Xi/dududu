@@ -16,7 +16,7 @@ socket.prototype.write = function (data, encoding, callback) {
     sWrite.apply(this, [dataWithTime, encoding, callback]);
 }
 
-let peers = {};
+let peers = []
 let peerCount = 0;
 let accumulateCount = 0;
 
@@ -84,9 +84,21 @@ function onConnect(c) {
 
 function initPeer(c) {
     peerCount++;
-    let id = (accumulateCount++) % maxPeerCount;
-    // TODO check if id is been occupied
-    peers[id] = { c: c, name: utils.randomString(6) };
+
+    let address = c.address().address;
+
+    let cData = utils.query(peers, { a: address, c: null });
+
+    let id = 0;
+    if (cData) {
+        cData.c = c;
+        id = cData.id;
+    } else {
+        id = (accumulateCount++) % maxPeerCount;
+        // TODO check if id is been occupied
+        peers[id] = { id: id, c: c, name: utils.randomString(6), a: address };
+    }
+
     c.setEncoding('utf8');
 
     return id;
@@ -209,12 +221,12 @@ function broadcast(msgType, data) {
 
     for (let i in peers) {
         let c = peers[i].c;
-        c.write(output);
+        if (c) c.write(output);
     }
 }
 
 function removeFromPeers(id) {
-    delete peers[id];
+    peers[id].c = null;
     peerCount--;
 }
 
