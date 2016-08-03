@@ -1,5 +1,6 @@
 'use strict';
 const net = require('net');
+const socket = net.Socket;
 
 const logger = require('./logger');
 const utils = require('./utils');
@@ -9,6 +10,11 @@ const templates = config.templates;
 const maxPeerCount = config.maxPeerCount;
 
 const server = net.createServer(onConnect);
+const sWrite = socket.prototype.write;
+socket.prototype.write = function (data, encoding, callback) {
+    let dataWithTime = `[${new Date().toLocaleString()}] ${data}`;
+    sWrite.apply(this, [dataWithTime, encoding, callback]);
+}
 
 let peers = {};
 let peerCount = 0;
