@@ -7,7 +7,7 @@
         "cConnect": "New Client ${ip}:${port} comes in.",
         "cClose": "Client ${ip}:${port} leaves.",
 
-        "!Welcome": "${serverName} > Welcome ${clientName}! Now you can dududu with others! Happy dududu-ing!(type ':help' for help)\n",
+        "!Welcome": "${serverName} > 🎉 Welcome ${clientName}(id: {$id})! Now you can dududu with others! Happy dududu-ing!(type ':help' for help)\n",
         "!online": "${serverName} > ${clientName} is online.\n",
         "!offline": "${serverName} > ${clientName} is offline.\n",
         "!receiverNotExist": "${serverName} > ${receiverId} is not online.\n",

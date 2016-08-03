@@ -12,7 +12,7 @@ const maxPeerCount = config.maxPeerCount;
 const server = net.createServer(onConnect);
 const sWrite = socket.prototype.write;
 socket.prototype.write = function (data, encoding, callback) {
-    let dataWithTime = `[${new Date().toLocaleString()}] ${data}`;
+    let dataWithTime = `\u0007[${new Date().toLocaleString()}] ${data}`;
     sWrite.apply(this, [dataWithTime, encoding, callback]);
 }
 
@@ -23,10 +23,16 @@ let accumulateCount = 0;
 let helpContent = (function () {
     let actions = config.actions;
     let commands = config.commands;
+    let encodeExamples = ['Hello World!', '你好，世界！', 'こんにちわ、世界！', '😄  🌏  ❗ ', '(づ｡◕‿‿◕｡)づ ☯ '];
 
     let helpContent = '';
     
     helpContent += `${config.serverName} > Here comes available things:\n`;
+
+    helpContent += 'Chat: just type what you want to say and hit ⏎ , it will broadcast to anyone online. Note that you can type any utf-8 characters and if you terminal suppport that, you can see it. For example:\n';
+    for (let i in encodeExamples) {
+        helpContent += `\t${encodeExamples[i]}\n`;
+    }
 
     helpContent += 'Actions: start by \'/\'\n';
     for (let actionName in actions) {
