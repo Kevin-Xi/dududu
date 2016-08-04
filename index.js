@@ -16,7 +16,7 @@ socket.prototype.write = function (data, encoding, callback) {
     sWrite.apply(this, [dataWithTime, encoding, callback]);
 }
 
-let peers = []
+let peers = [];
 let peerCount = 0;
 let accumulateCount = 0;
 
