@@ -85,7 +85,7 @@ function onConnect(c) {
 function initPeer(c) {
     peerCount++;
 
-    let address = c.address().address;
+    let address = c.remoteAddress;
 
     let cData = utils.query(peers, { a: address, c: null });
 
