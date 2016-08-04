@@ -221,7 +221,7 @@ function broadcast(msgType, data) {
 
     for (let i in peers) {
         let c = peers[i].c;
-        if (c) c.write(output);
+        if (c && !c.destroyed) c.write(output);
     }
 }
 
