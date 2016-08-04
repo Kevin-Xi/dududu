@@ -238,7 +238,9 @@ function showHelp(id) {
 function showRoster(id) {
     let roster = [];
     for (let id in peers) {
-        roster.push(`${id}: ${peers[id].name}`);
+        if (peers[id].c) {
+            roster.push(`${id}: ${peers[id].name}`);
+        }
     }
 
     let rosterContent = `${config.serverName} > dududu-ers online:\n${roster.join('\n')}\nHave a nice chat with them!\n`;
