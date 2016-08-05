@@ -9,7 +9,6 @@ const config = require('./config');
 const templates = config.templates;
 const maxPeerCount = config.maxPeerCount;
 
-const server = net.createServer(onConnect);
 const sWrite = socket.prototype.write;
 socket.prototype.write = function (data, encoding, callback) {
     let dataWithTime = `\u0007[${new Date().toLocaleString()}] ${data}`;
@@ -49,6 +48,7 @@ let helpContent = (function () {
     return helpContent;
 })();
 
+const server = net.createServer(onConnect);
 server.listen(config.port, () => {
     logger('sListen', { port: config.port });
 });
