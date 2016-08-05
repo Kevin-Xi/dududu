@@ -7,3 +7,4 @@ TODOs
 - [ ] Finish :nick, check if the nick has been taken(config.serverName also can't be taken)
 - [ ] Finsih /tap
 - [ ] Add chat log subsystem
+- [ ] Add interfaces for bots
