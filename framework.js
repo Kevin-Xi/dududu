@@ -11,27 +11,34 @@ let Framework = {
     },
 
     start: function () {
-        const server = net.createServer(onConnect);
+        const server = net.createServer(this.onConnect);
         server.listen(this.core.system.port, () => {
             console.log(`server start with ${this.core.name}`);
         });
     },
 
     // internal
-    core: {}
+    core: {},
+    onConnect: function () {
+        let id = 0;
+
+        c.on('data', onData);
+        // c.once('close', onClose);
+        // c.on('error', onError);
+
+        function onData(data) {
+            this.responseToData(id, data);
+        }
+    },
+
+    responseToDate: function (id, data) {
+        let actionHandler = this.core.action[data] || noop;
+        actionHandler(id, data);
+    }
 };
 
-function onConnect() {
-
-}
-
 function getCore(coreName) {
-    return {
-        name: coreName,
-        system: {
-            port: 9922
-        }
-    };
+    return require(`./cores/${coreName}`);
 }
 
 module.exports = Framework;
